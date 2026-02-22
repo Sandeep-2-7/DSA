@@ -30,48 +30,41 @@ public class UnionOFSortedArr {
         List<Integer> res = new ArrayList<Integer>();
         while(i<arr1.length || j<arr2.length){
             if(arr1.length == i && j<arr2.length){
-                res.add(arr2[j]);
-                j++;
-                k++;
-                continue;
-            }
-            if(arr2.length == j && i<arr1.length){
-                res.add(arr1[i]);
-                i++;
-                k++;
-                continue;
-            }
-            if(arr1[i]<arr2[j]){
-                if(res.size()> 0 && res.get(k-1) == arr1[i]){
-                    i++;
-                    continue;
-                }
-                else{
-                    res.add(arr1[i]);
-                    i++;
-                    k++;
-                }
-            } else if (arr1[i]>arr2[j]) {
-                if(res.size()> 0 && res.get(k-1) == arr2[j]){
-                    j++;
-                    continue;
-                }
-                else {
+                if(res.size()== 0 || res.get(k-1).equals(arr2[j])){
                     res.add(arr2[j]);
-                    j++;
                     k++;
                 }
-            } else if (arr1[i] == arr2[j]) {
-                if(res.size()> 0 && res.get(k-1) == arr1[i]){
-                    i++;
-                    j++;
-                }
-                else {
+                j++;
+            }
+            else if(arr2.length == j && i<arr1.length){
+                if(res.size()== 0 || res.get(k-1).equals(arr1[i])){
                     res.add(arr1[i]);
                     k++;
+                }
+                i++;
+            }
+
+            else if(arr1[i]<arr2[j]){
+                if(res.size()== 0 || res.get(k-1).equals(arr1[i])){
+                    res.add(arr1[i]);
+                    k++;
+                }
+                i++;
+            } else if (arr1[i]>arr2[j]) {
+                if(res.size()== 0 || res.get(k-1).equals(arr2[j])){
+                    res.add(arr2[j]);
+                    k++;
+                }
+                    j++;
+
+            } else if (arr1[i] == arr2[j]) {
+                if(res.size()== 0 || res.get(k-1).equals(arr1[i])){
+                    res.add(arr1[i]);
+                    k++;
+                }
                     i++;
                     j++;
-                }
+
             }
         }
         return res;
