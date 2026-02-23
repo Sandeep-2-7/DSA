@@ -23,7 +23,8 @@ public class NumberThatAppearsOnce {
             int count = 0;
 
             for(int j=0;j<n;j++){
-
+                if(count>1)
+                    break;
                 if(arr[i] == arr[j]) {
                     count++;
                 }
