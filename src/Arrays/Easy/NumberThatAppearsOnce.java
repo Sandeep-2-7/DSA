@@ -34,4 +34,9 @@ public class NumberThatAppearsOnce {
         }
         return -1;
     }
+
+    public static int searchV2(int[] arr){
+
+        return -1;
+    }
 }
