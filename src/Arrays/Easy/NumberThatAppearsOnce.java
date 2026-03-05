@@ -15,6 +15,7 @@ public class NumberThatAppearsOnce {
         }
 //        System.out.println(search(nums));
         System.out.println(searchV2(nums));
+        System.out.println(searchV3(nums));
     }
 
     public static int search(int[] arr){
@@ -47,7 +48,7 @@ public class NumberThatAppearsOnce {
         for(int i=0;i<n;i++){
             if(arr[i] == 0)
                 temp++;
-            result.put(arr[i], result.getOrDefault(arr[i],0)^arr[i]);
+            result.put(arr[i], result.getOrDefault(arr[i],0)^arr[i]) ;
 //            result.put(arr[i], result.get(arr[i])^arr[i]);
         }
 
@@ -63,5 +64,14 @@ public class NumberThatAppearsOnce {
 //        }
 
         return temp!=0 ? 0:-1;
+    }
+
+    public static int searchV3(int[] arr){
+        int xor = 0;
+        for(int i=0;i<arr.length;i++){
+            xor = xor ^ arr[i];
+        }
+
+        return xor;
     }
 }
