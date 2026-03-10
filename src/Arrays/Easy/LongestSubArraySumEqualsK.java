@@ -15,8 +15,10 @@ public class LongestSubArraySumEqualsK {
         for (int i = 0; i < n; i++) {
             nums[i] = sc.nextInt();
         }
+
      //   System.out.println(equalsK(nums,target)+1);
         System.out.println(equalsKV2(nums,target));
+//         System.out.println(countV2(nums,target));
     }
 
     public static int equalsK(int[] arr, int target){
@@ -65,8 +67,41 @@ public class LongestSubArraySumEqualsK {
             if (!count.containsKey(sum)) {
                 count.put(sum, i);   // store first occurrence
             }
+            System.out.println(count);
         }
 
         return longest;
+    }
+
+    public static int countV2(int[] arr, int target) {
+
+        int n = arr.length;
+        int count1 = 0;
+        long sum = 0L;
+        int incre = 1;
+
+        Map<Long, Integer> count = new HashMap<>();
+
+        for (int i = 0; i < n; i++) {
+
+            sum += arr[i];
+
+            long check = sum - target;
+
+            if (sum == target) {
+                count1++;
+            }
+
+            if (count.containsKey(check) && sum==target) {
+                count1=count1+incre++;
+            }
+            else if(count.containsKey(check))
+                count1++;
+
+            count.put(sum, i);
+
+        }
+        System.out.println(count.get(0L));
+        return count1;
     }
 }
