@@ -1,5 +1,7 @@
 package Arrays.Medium;
 
+import Sorting.MergeSort;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +20,8 @@ public class TwoSum {
         }
 //        System.out.println(Arrays.toString(findIndex(nums,target)));
 //        System.out.println(Arrays.toString(findIndexV2(nums,target)));
-        System.out.println(Arrays.toString(findIndexV3(nums,target)));
+//        System.out.println(Arrays.toString(findIndexV3(nums,target)));
+        System.out.println(Arrays.toString(findIndexV4(nums,target)));
     }
 
     public static int[] findIndexV2(int[] arr, int target){
@@ -47,6 +50,23 @@ public class TwoSum {
                 return new int[]{i,findMap.get(remain)};
             else
                 findMap.put(arr[i],i);
+        }
+        return new int[]{-1,-1};
+    }
+
+
+    public static int[] findIndexV4(int[] arr, int target){
+        MergeSort.sorting(arr,0,arr.length-1);
+        int start = 0;;
+        int end = arr.length-1;
+        while(start < end){
+            int add = arr[start] + arr[end];
+            if(target == add)
+                return new int[]{start,end};
+            else if (target<add)
+                end--;
+            else
+                start++;
         }
         return new int[]{-1,-1};
     }
