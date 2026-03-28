@@ -17,7 +17,8 @@ public class TwoSum {
             nums[i] = sc.nextInt();
         }
 //        System.out.println(Arrays.toString(findIndex(nums,target)));
-        System.out.println(Arrays.toString(findIndexV2(nums,target)));
+//        System.out.println(Arrays.toString(findIndexV2(nums,target)));
+        System.out.println(Arrays.toString(findIndexV3(nums,target)));
     }
 
     public static int[] findIndexV2(int[] arr, int target){
@@ -28,12 +29,26 @@ public class TwoSum {
                 duplicateMap.put(arr[i],i);
         }
 
+        System.out.println(duplicateMap);
+
         for(int i=0;i<arr.length;i++){
             int search=target-arr[i];
             if(duplicateMap.containsKey(search) && i!=duplicateMap.get(search))
                 return new int[]{i,duplicateMap.get(search)};
         }
         return new int[]{0,0};
+    }
+
+    public static int[] findIndexV3(int[] arr, int target){
+        Map<Integer, Integer> findMap = new HashMap<>();
+        for(int i=0;i<arr.length;i++){
+            int remain =  target - arr[i];
+            if(findMap.containsKey(remain))
+                return new int[]{i,findMap.get(remain)};
+            else
+                findMap.put(arr[i],i);
+        }
+        return new int[]{-1,-1};
     }
 
     public static int[] findIndex(int[] arr, int target) {
