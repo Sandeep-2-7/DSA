@@ -11,8 +11,27 @@ public class Majority_Element {
         for (int i = 0; i < n; i++) {
             nums[i] = sc.nextInt();
         }
-        MajorityEle(nums);
+//        MajorityEle(nums);
+        System.out.println(MajorityEleV2(nums));
     }
+
+    public static int MajorityEleV2(int[] arr){
+        int start = 0;
+        int element = arr[start];
+        int count = 1;
+        for(int i=1;i< arr.length;i++){
+
+            if(element == arr[i])
+                count++;
+            else
+                count--;
+
+            if(count == 0)
+                element = arr[i+1];
+        }
+        return element;
+    }
+
 
     public static int MajorityEle(int[] arr){
         Map<Integer, Integer> maxEle = new HashMap<>();
@@ -29,7 +48,6 @@ public class Majority_Element {
         int maxKey = maxEle.entrySet().stream()
                 .max(Map.Entry.comparingByValue())
                 .get().getKey();
-
 
         return maxKey;
     }
