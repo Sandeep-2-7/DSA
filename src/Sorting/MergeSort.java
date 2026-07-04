@@ -30,7 +30,7 @@ public class MergeSort {
     }
 
     public static void mergeArr(int[] arr, int low, int mid, int high){
-
+        System.out.println(low+" "+mid+" "+high);
         int left = low;
         int right = mid+1;
         List<Integer> temp = new ArrayList<Integer>();
