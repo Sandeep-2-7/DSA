@@ -11,7 +11,7 @@ public class MissingNum {
         for (int i = 0; i < n; i++) {
             nums[i] = sc.nextInt();
         }
-        System.out.println(missingNum(nums));
+        System.out.println(missingNumv2(nums));
     }
 
     public static int missingNum(int[] arr){
@@ -25,5 +25,16 @@ public class MissingNum {
         }
         miss = total1 - total2;
         return miss;
+    }
+
+    public static int missingNumv2(int[] arr){
+        int xor=0;
+        for(int i=1;i<=arr.length+1;i++){
+            xor^=i;
+        }
+        for(int i=0;i< arr.length;i++){
+            xor^=arr[i];
+        }
+        return xor;
     }
 }
