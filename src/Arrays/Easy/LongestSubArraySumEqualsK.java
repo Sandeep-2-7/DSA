@@ -16,9 +16,78 @@ public class LongestSubArraySumEqualsK {
             nums[i] = sc.nextInt();
         }
 
-     //   System.out.println(equalsK(nums,target)+1);
-        System.out.println(equalsKV2(nums,target));
-//         System.out.println(countV2(nums,target));
+//        System.out.println(equalsK(nums,target)+1)
+//        System.out.println(equalsKV2(nums,target));
+//        System.out.println(countV2(nums,target));
+//        System.out.println(pract(nums,target));
+        System.out.println(positiveNoSlidingWind(nums,target));
+    }
+
+    //brute force using 2 loops
+    // time complexity = O(n2)
+    // space complexity = O(1)
+    public static int pract(int[] arr, int target){
+        int longest = 0;
+        for(int i=0;i<arr.length;i++){
+            int sum = 0;
+            for(int j=i;j<arr.length;j++){
+                sum=sum+arr[j];
+
+                if(sum == target)
+                    if(longest < j-i)
+                        longest=j-i+1;
+
+            }
+        }
+        return longest;
+    }
+
+    // when all the elements are positive we use Sliding Window
+    // TC = O(n)
+    // SC = O(1)
+    public static int positiveNoSlidingWind(int[] arr, int target){
+        int left=0,  sum =0;
+        int longest = 0;
+        int a =0,b=0;
+        for(int i=0;i<arr.length;i++){
+            sum+=arr[i];
+            while(sum>target){
+                sum -= arr[left];
+                left++;
+            }
+            if(sum==target) {
+//                longest = Math.max(longest, i - left+1);
+                if(longest<i-left+1) {
+                    longest = i - left + 1;
+                    a=left;
+                    b=i;
+                }
+            }
+
+        }
+        for(int i=a;i<=b;i++){
+            System.out.println(arr[i]);
+        }
+        return longest;
+    }
+
+    // For negative and positive elements
+    // TC = O(n)
+    // SC = O(n)
+    public static  int prefixSumversion(int[] arr, int target){
+        Map<Integer,Integer> prefixSumMap = new HashMap<Integer, Integer>();
+        int sum =0,check,longest =0;
+        prefixSumMap.put(0,-1);
+
+        for(int i=0;i<arr.length;i++){
+            sum+=arr[i];
+            check=sum-target;
+            if(prefixSumMap.containsKey(check))
+                longest = Math.max(longest,i-prefixSumMap.get(check));
+            if(!prefixSumMap.containsKey(sum))
+                prefixSumMap.put(sum, i);
+        }
+        return longest;
     }
 
     public static int equalsK(int[] arr, int target){
