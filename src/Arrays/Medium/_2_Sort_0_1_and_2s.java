@@ -3,7 +3,7 @@ package Arrays.Medium;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Sort_0_1_and_2s {
+public class _2_Sort_0_1_and_2s {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the length for array : ");
@@ -12,7 +12,7 @@ public class Sort_0_1_and_2s {
         for (int i = 0; i < n; i++) {
             nums[i] = sc.nextInt();
         }
-        sort012s(nums);
+        sorting(nums);
         System.out.println(Arrays.toString(nums));
     }
 
@@ -68,5 +68,33 @@ public class Sort_0_1_and_2s {
             System.out.println();
             arr[i+count0+count1] = 2;
         }
+    }
+
+    public static void sorting(int[] arr){
+        int low = 0, mid = 0, high = arr.length-1;
+
+        while(mid<=high){
+            if(arr[mid] == 0){
+                swap(arr,mid,low);
+                low++;
+                mid++;
+
+            }
+            else if(arr[mid] == 1){
+              //  swap(arr,index,mid);
+                mid++;
+
+            }
+            else if(arr[mid] == 2){
+                swap(arr,mid,high);
+                high--;
+            }
+        }
+    }
+
+    public static void swap(int[] arr, int a, int b){
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
     }
 }
