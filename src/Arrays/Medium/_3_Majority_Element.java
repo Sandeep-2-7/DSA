@@ -2,7 +2,7 @@ package Arrays.Medium;
 
 import java.util.*;
 
-public class Majority_Element {
+public class _3_Majority_Element {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the length for array : ");
@@ -12,7 +12,7 @@ public class Majority_Element {
             nums[i] = sc.nextInt();
         }
 //        MajorityEle(nums);
-        System.out.println(MajorityEleV2(nums));
+        System.out.println(boyerMooreAlgo(nums));
     }
 
     public static int MajorityEleV2(int[] arr){
@@ -50,5 +50,46 @@ public class Majority_Element {
                 .get().getKey();
 
         return maxKey;
+    }
+
+    public static int Max(int[] arr){
+        Map<Integer, Integer> countMap = new HashMap<>();
+
+        for(int i=0;i<arr.length;i++){
+           if(countMap.containsKey(arr[i]))
+               countMap.put(arr[i], countMap.getOrDefault(arr[i],0)+1);
+//               countMap.put(arr[i],countMap.get(arr[i])+1);
+           else
+               countMap.put(arr[i],1);
+        }
+        int largest = 0;
+        int larCount = 0;
+        for(Map.Entry<Integer, Integer> e: countMap.entrySet()){
+           if(e.getValue()>larCount){
+               largest=e.getKey();
+               larCount=e.getValue();
+           }
+        }
+
+        return largest;
+    }
+
+    public static int boyerMooreAlgo(int[] arr){
+        int count = 1;
+        int currEle = arr[0];
+
+        for(int i=1;i<arr.length;i++){
+            if(count == 0) {
+                currEle = arr[i];
+                count++;
+            }
+            else if(currEle == arr[i])
+                count++;
+            else if (currEle != arr[i])
+                count--;
+
+
+        }
+        return currEle;
     }
 }
