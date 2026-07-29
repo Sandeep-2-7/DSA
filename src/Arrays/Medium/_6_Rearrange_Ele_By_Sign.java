@@ -1,6 +1,8 @@
 package Arrays.Medium;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class _6_Rearrange_Ele_By_Sign {
@@ -13,9 +15,13 @@ public class _6_Rearrange_Ele_By_Sign {
         for (int i = 0; i < n; i++) {
             nums[i] = sc.nextInt();
         }
-        System.out.println("Rearranged array is : " + Arrays.toString(rearrangeArray(nums)));
+//        System.out.println("Rearranged array is : " + Arrays.toString(rearrangeArray(nums)));
+        System.out.println("Rearranged array is : " + Arrays.toString(rearrangeArr(nums)));
     }
 
+
+    //TC = O(N)
+    //SC = O(N)
     public static int[] rearrangeArray(int[] nums) {
         int positive = 0;
         int negative = 1;
@@ -31,7 +37,39 @@ public class _6_Rearrange_Ele_By_Sign {
                 negative = negative+2;
             }
         }
-
         return updatedArr;
+    }
+
+    //TC = O(N2)
+    //SC = O(1)
+    public static int[] rearrangeArr(int[] arr){
+        List<Integer> position = new ArrayList<>();
+
+        for(int i=0;i<arr.length;i++){
+            if((i%2 == 0 && arr[i]<0) || (i%2==1 && arr[i]>0)){
+                int j=i+1;
+
+                while(j<arr.length){
+                    if((i%2==0 && arr[j]>0) || (i%2==1 && arr[j]<0))
+                        break;
+                    j++;
+                }
+
+                if(j== arr.length)
+                    break;
+
+                rightRotate(arr,i,j);
+            }
+        }
+        return arr;
+    }
+
+    public static void rightRotate(int[] arr, int left, int right){
+        int temp = arr[right];
+        while(left<right){
+            arr[right]=arr[--right];
+            System.out.println(Arrays.toString(arr));
+        }
+        arr[left]=temp;
     }
 }
