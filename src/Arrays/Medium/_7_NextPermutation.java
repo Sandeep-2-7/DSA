@@ -17,6 +17,8 @@ public class _7_NextPermutation {
         System.out.println(Arrays.toString(nextPermutation(nums)));
     }
 
+    // TC O(N)
+    // SC O(1)
         public static int[] nextPermutation(int[] arr){
         int len = arr.length;
         int pivot = -1;
