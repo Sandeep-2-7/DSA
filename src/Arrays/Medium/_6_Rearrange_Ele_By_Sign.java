@@ -16,7 +16,9 @@ public class _6_Rearrange_Ele_By_Sign {
             nums[i] = sc.nextInt();
         }
 //        System.out.println("Rearranged array is : " + Arrays.toString(rearrangeArray(nums)));
-        System.out.println("Rearranged array is : " + Arrays.toString(rearrangeArr(nums)));
+//        System.out.println("Rearranged array is : " + Arrays.toString(rearrangeArr(nums)));
+        rearrangeArrayOfNotSameSize(nums);
+        System.out.println(Arrays.toString(nums));
     }
 
 
@@ -43,7 +45,7 @@ public class _6_Rearrange_Ele_By_Sign {
     //TC = O(N2)
     //SC = O(1)
     public static int[] rearrangeArr(int[] arr){
-        List<Integer> position = new ArrayList<>();
+       //  List<Integer> position = new ArrayList<>();
 
         for(int i=0;i<arr.length;i++){
             if((i%2 == 0 && arr[i]<0) || (i%2==1 && arr[i]>0)){
@@ -71,5 +73,36 @@ public class _6_Rearrange_Ele_By_Sign {
             System.out.println(Arrays.toString(arr));
         }
         arr[left]=temp;
+    }
+
+    public static void rearrangeArrayOfNotSameSize(int[] arr){
+        List<Integer> positiveArr = new ArrayList<>();
+        List<Integer> negativeArr = new ArrayList<>();
+
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]>0)
+                positiveArr.add(arr[i]);
+            else
+                negativeArr.add(arr[i]);
+        }
+
+        int len = Math.min(positiveArr.size(), negativeArr.size());
+
+        for(int i=0;i<len;i++){
+            arr[i*2]=positiveArr.get(i);
+            arr[i*2+1]=negativeArr.get(i);
+        }
+
+        int len2 = Math.max(positiveArr.size(), negativeArr.size());
+        int index = len*2;
+        for(int i=len;i<len2;i++){
+            if(positiveArr.size()>negativeArr.size()){
+                arr[index] = positiveArr.get(i);
+            }
+            else
+                arr[index] = negativeArr.get(i);
+
+            index++;
+        }
     }
 }
