@@ -16,7 +16,7 @@ public class _1_SearchXinsortedArr {
         for (int i = 0; i < n; i++) {
             nums[i] = sc.nextInt();
         }
-        System.out.println(BS(nums, target));
+        System.out.println(BinarySearch(nums, 0, nums.length-1, target));
     }
 
     public static int BS(int[] arr, int target){
@@ -35,5 +35,21 @@ public class _1_SearchXinsortedArr {
             }
         }
         return -1;
+    }
+
+    public static int BinarySearch(int[] arr, int start, int end, int target){
+
+        int mid = (end-start)/2 + start;
+        if(arr.length == 0 || start>end)
+            return -1;
+
+        if(arr[mid] == target)
+            return mid;
+
+        if(arr[mid] > target)
+            BinarySearch(arr, start, mid-1, target);
+
+        return BinarySearch(arr, mid+1, end, target);
+
     }
 }
