@@ -2,7 +2,7 @@ package _4_BinarySearch;
 
 import java.util.Scanner;
 
-public class LowerNdUpperBound {
+public class _2_nd_3_LowerNdUpperBound {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the length of the array : ");
