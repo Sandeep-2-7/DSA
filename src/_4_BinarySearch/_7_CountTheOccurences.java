@@ -1,10 +1,8 @@
 package _4_BinarySearch;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class _6_FirstandLastOccurence {
-
+public class _7_CountTheOccurences {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the length of the array : ");
@@ -18,12 +16,17 @@ public class _6_FirstandLastOccurence {
         for (int i = 0; i < n; i++) {
             nums[i] = sc.nextInt();
         }
-        int a = first(nums,target);
+
+        int a=first(nums, target);
         if(a == -1)
-            System.out.println(Arrays.toString(new int[]{-1,-1}));
-        else
-            System.out.println(Arrays.toString(new int[]{first(nums, target), last(nums, target)}));
+            System.out.println("Length is -1");
+        else{
+            int b=last(nums,target);
+            System.out.println("Length is "+ (b-a+1));
+        }
+
     }
+
     public static int first(int[] arr, int target){
         int start = 0;
         int end = arr.length - 1;
@@ -64,4 +67,3 @@ public class _6_FirstandLastOccurence {
         return ans;
     }
 }
-
